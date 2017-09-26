@@ -2,11 +2,11 @@ import NoPuedeIrDeAventuras.*
 import Rick.*
 class Familiar
 {
-	method afectarDemencia(unRick, unNumero)
+
+	method afectarDemencia(unRick)
 	{
-		if(unRick.demencia() + unNumero > 100)
-			throw new NoPuedeIrDeAventuras("Rick esta muy loco")	
-		unRick.modificarDemencia(unNumero)
+
+		unRick.modificarDemencia(self.demenciaAfectada())
 		
 	}
 	
@@ -17,11 +17,12 @@ class Familiar
 	method irseDeAventura(unRick)
 	{
 		if(!self.puedeIrDeAventuras())
-			throw new NoPuedeIrDeAventuras("No se puede ir de aventuras")
+			throw new NoPuedeIrDeAventuras("el familiar no se puede ir de aventuras")
 		self.sufrirEfectoDeAventuras(unRick)
 	}
 	
 	method sufrirEfectoDeAventuras(unRick)
+	method demenciaAfectada()
 }
 
 
@@ -36,9 +37,14 @@ class Morty inherits Familiar
 	
 	override method sufrirEfectoDeAventuras(unRick)
 	{
-		self.afectarDemencia(unRick, 50)
+		self.afectarDemencia(unRick)
 		saludMental -= 30
 		
+	}
+	
+	override method demenciaAfectada()
+	{
+		return 50
 	}
 }
 
@@ -53,8 +59,13 @@ class Beth inherits Familiar
 	
 	override method sufrirEfectoDeAventuras(unRick)
 	{
-		self.afectarDemencia(unRick, -20)
+		self.afectarDemencia(unRick)
 		afectoDelPadre += 10
+	}
+	
+	override method demenciaAfectada()
+	{
+		return -20
 	}
 }
 
@@ -76,5 +87,10 @@ class Jerry inherits Familiar
 	override method sufrirEfectoDeAventuras(unRick)
 	{
 		
+	}
+	
+	override method demenciaAfectada()
+	{
+		return 0
 	}
 }

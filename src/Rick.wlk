@@ -21,6 +21,8 @@ class Rick
 		}
 		catch e : NoPuedeIrDeAventuras {
 			self.tomarUnTrago()
+			// No es necesario pero para mostrar que se puede acceder al mensaje de la excepcion
+			console.println("Se capturo una excepcion: " + e.getMessage())
 		}
 	
 		
@@ -28,6 +30,8 @@ class Rick
 	
 	method modificarDemencia(unNumero)
 	{
+		if(demencia + unNumero > 100)
+			throw new NoPuedeIrDeAventuras("Rick esta muy loco")
 		demencia += unNumero
 	}
 	
